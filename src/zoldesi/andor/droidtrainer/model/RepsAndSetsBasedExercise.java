@@ -105,6 +105,7 @@ public class RepsAndSetsBasedExercise extends SetsBasedExercise {
                 this.setCompletedHangTime(0);
                 if(completedReps >= totalReps){
                     this.setCompletedSets(completedSets + 1);
+                    this.setCompletedReps(0);
                     this.setState(ExerciseState.SET_RESTING);
                 } else {
                     this.setState(ExerciseState.REP_RESTING);

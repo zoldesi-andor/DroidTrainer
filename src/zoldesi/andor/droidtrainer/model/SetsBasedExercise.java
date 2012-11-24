@@ -90,7 +90,7 @@ public class SetsBasedExercise extends ObservableModel {
             this.setCompletedPerSetRestTime(completedPerSetRestTime + 1);
             if(completedPerSetRestTime >= perSetRestTime){
                 this.setCompletedPerSetRestTime(0);
-                this.setState(ExerciseState.EXERCISING);
+                this.setState(completedSets >= totalSets ? ExerciseState.COMPLETED : ExerciseState.EXERCISING);
             }
         }
     }
