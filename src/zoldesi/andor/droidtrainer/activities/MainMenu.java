@@ -1,7 +1,8 @@
-package zoldesi.andor.droidtrainer;
+package zoldesi.andor.droidtrainer.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import zoldesi.andor.droidtrainer.R;
 
 public class MainMenu extends Activity {
     /**
