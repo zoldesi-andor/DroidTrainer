@@ -1,0 +1,5 @@
+gen/
+bin/
+.idea/
+local.properties
+*.iml
