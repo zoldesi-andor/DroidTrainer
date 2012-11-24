@@ -12,7 +12,7 @@ public class ObservableModel {
     /**
      * Interface to receive change notifications from the model
      */
-    interface ModelListener {
+    public interface ModelListener {
         void modelChanged();
     }
 

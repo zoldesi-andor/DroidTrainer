@@ -1,0 +1,12 @@
+<resources>
+    <item name="TotalRest" type="id"/>
+    <item name="CompletedRest" type="id"/>
+    <item name="TotalSetRest" type="id"/>
+    <item name="CompletedSetRest" type="id"/>
+    <item name="TotalSets" type="id"/>
+    <item name="CompletedSets" type="id"/>
+    <item name="TotalReps" type="id"/>
+    <item name="CompletedReps" type="id"/>
+    <item name="HangTime" type="id"/>
+    <item name="CompletedHangTime" type="id"/>
+</resources>
