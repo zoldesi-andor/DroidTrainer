@@ -17,6 +17,10 @@ public class RepsAndSetsBasedExercise extends SetsBasedExercise {
 ////////////////////////////////////////////
 // Constructor
 ///////////////////////////////////////////
+    public RepsAndSetsBasedExercise(){
+        super(0, 0);
+    }
+
     public RepsAndSetsBasedExercise(int totalSets, int perSetRestTime, int totalReps, int hangTime, int restTime) {
         super(totalSets, perSetRestTime);
         this.totalReps = totalReps;

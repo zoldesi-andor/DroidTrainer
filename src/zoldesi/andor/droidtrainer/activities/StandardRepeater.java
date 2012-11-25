@@ -14,7 +14,11 @@ import zoldesi.andor.droidtrainer.model.RepsAndSetsBasedExercise;
 public class StandardRepeater extends RepeaterBase {
 
     @Override
-    public RepsAndSetsBasedExercise createModel() {
-        return new RepsAndSetsBasedExercise(10, 20, 5, 5, 5);
+    public void initialize(){
+        this.model.setHangTime(5);
+        this.model.setRestTime(5);
+        this.model.setTotalReps(10);
+        this.model.setPerSetRestTime(180);
+        this.model.setTotalSets(10);
     }
 }

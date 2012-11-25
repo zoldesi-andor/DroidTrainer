@@ -16,6 +16,16 @@ public class Pyramids extends RepeaterBase {
 
     @Override
     public void initialize(){
+        this.model.setHangTime(4);
+        this.model.setRestTime(5);
+        this.model.setTotalReps(7);
+        this.model.setPerSetRestTime(60);
+        this.model.setTotalSets(5);
+
+        this.view.getTotalRepsEditText().setEnabled(false);
+        this.view.getHangTimeEditText().setEnabled(false);
+        this.view.getTotalRestEditText().setEnabled(false);
+
         this.model.addStateChangeListener(
                 new ExerciseStateChangeListener() {
                     @Override
@@ -27,10 +37,5 @@ public class Pyramids extends RepeaterBase {
                     }
                 }
         );
-    }
-
-    @Override
-    public RepsAndSetsBasedExercise createModel() {
-        return new RepsAndSetsBasedExercise(5, 60, 7, 4, 5);
     }
 }

@@ -1,9 +1,12 @@
 package zoldesi.andor.droidtrainer.views;
 
 import android.content.Context;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import zoldesi.andor.droidtrainer.R;
@@ -28,8 +31,43 @@ public class SetsExerciseView extends TableLayout implements ObservableModel.Mod
         super(context, attrs);
     }
 
+    //////////////////////////////////
+    //  Getters setters
+    /////////////////////////////////
     public void setModel(RepsAndSetsBasedExercise model) {
         this.model = model;
+    }
+
+    public Button getStartButton(){
+        return ((Button)this.findViewById(R.id.StartButton));
+    }
+
+    public Button getPauseButton(){
+        return ((Button)this.findViewById(R.id.PauseButton));
+    }
+
+    public Button getResetButton(){
+        return ((Button)this.findViewById(R.id.ResetButton));
+    }
+
+    public EditText getTotalRepsEditText(){
+        return ((EditText)this.findViewById(R.id.TotalReps));
+    }
+
+    public EditText getTotalRestEditText(){
+        return ((EditText)this.findViewById(R.id.TotalRest));
+    }
+
+    public EditText getTotalSetRestEditText(){
+        return ((EditText)this.findViewById(R.id.TotalSetRest));
+    }
+
+    public EditText getTotalSetsEditText(){
+        return ((EditText)this.findViewById(R.id.TotalSets));
+    }
+
+    public EditText getHangTimeEditText(){
+        return ((EditText)this.findViewById(R.id.HangTime));
     }
 
     @Override
@@ -40,11 +78,11 @@ public class SetsExerciseView extends TableLayout implements ObservableModel.Mod
             ((TextView)this.findViewById(R.id.CompletedSetRest)).setText(String.valueOf(model.getCompletedPerSetRestTime()));
             ((TextView)this.findViewById(R.id.CompletedSets)).setText(String.valueOf(model.getCompletedSets()));
             ((TextView)this.findViewById(R.id.CompletedHangTime)).setText(String.valueOf(model.getCompletedHangTime()));
-            ((TextView)this.findViewById(R.id.TotalReps)).setText(String.valueOf(model.getTotalReps()));
-            ((TextView)this.findViewById(R.id.TotalRest)).setText(String.valueOf(model.getRestTime()));
-            ((TextView)this.findViewById(R.id.TotalSetRest)).setText(String.valueOf(model.getPerSetRestTime()));
-            ((TextView)this.findViewById(R.id.TotalSets)).setText(String.valueOf(model.getTotalSets()));
-            ((TextView)this.findViewById(R.id.HangTime)).setText(String.valueOf(model.getHangTime()));
+            ((EditText)this.findViewById(R.id.TotalReps)).setText(String.valueOf(model.getTotalReps()));
+            ((EditText)this.findViewById(R.id.TotalRest)).setText(String.valueOf(model.getRestTime()));
+            ((EditText)this.findViewById(R.id.TotalSetRest)).setText(String.valueOf(model.getPerSetRestTime()));
+            ((EditText)this.findViewById(R.id.TotalSets)).setText(String.valueOf(model.getTotalSets()));
+            ((EditText)this.findViewById(R.id.HangTime)).setText(String.valueOf(model.getHangTime()));
         }
     }
 }

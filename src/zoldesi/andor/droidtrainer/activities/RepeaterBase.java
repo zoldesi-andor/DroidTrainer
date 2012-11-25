@@ -3,8 +3,12 @@ package zoldesi.andor.droidtrainer.activities;
 import android.app.Activity;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 import zoldesi.andor.droidtrainer.R;
 import zoldesi.andor.droidtrainer.model.ExerciseState;
 import zoldesi.andor.droidtrainer.model.ExerciseStateChangeListener;
@@ -20,10 +24,10 @@ public abstract class RepeaterBase extends Activity {
     MediaPlayer lowBeep;
     MediaPlayer doubleBeep;
 
-    Timer timer;
+    private Timer timer;
 
     SetsExerciseView view;
-    RepsAndSetsBasedExercise model;
+    RepsAndSetsBasedExercise model = new RepsAndSetsBasedExercise();
 
     /**
      * Called when the activity is first created.
@@ -39,10 +43,9 @@ public abstract class RepeaterBase extends Activity {
         lowBeep = MediaPlayer.create(this, R.raw.beeplow);
         doubleBeep = MediaPlayer.create(this, R.raw.beepdouble);
 
-        this.model = this.createModel();
         this.model.addObserver(view);
         this.view.setModel(model);
-        this.model.startNextSet();
+
         this.model.addStateChangeListener(
                 new ExerciseStateChangeListener() {
                     @Override
@@ -52,13 +55,83 @@ public abstract class RepeaterBase extends Activity {
                 }
         );
 
+        this.view.getStartButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RepeaterBase.this.startExercise();
+
+                RepeaterBase.this.view.getStartButton().setVisibility(View.GONE);
+                RepeaterBase.this.view.getResetButton().setVisibility(View.GONE);
+                RepeaterBase.this.view.getPauseButton().setVisibility(View.VISIBLE);
+            }
+        });
+
+        this.view.getPauseButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RepeaterBase.this.pauseExercise();
+
+                RepeaterBase.this.view.getStartButton().setVisibility(View.VISIBLE);
+                RepeaterBase.this.view.getResetButton().setVisibility(View.VISIBLE);
+                RepeaterBase.this.view.getPauseButton().setVisibility(View.GONE);
+            }
+        });
+
+        this.view.getResetButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RepeaterBase.this.resetExercise();
+
+                RepeaterBase.this.view.getStartButton().setVisibility(View.VISIBLE);
+                RepeaterBase.this.view.getResetButton().setVisibility(View.GONE);
+                RepeaterBase.this.view.getPauseButton().setVisibility(View.GONE);
+            }
+        });
+
+        this.view.getTotalSetsEditText().setOnFocusChangeListener(new EditTextFocusChanged());
+        this.view.getHangTimeEditText().setOnFocusChangeListener(new EditTextFocusChanged());
+        this.view.getTotalRepsEditText().setOnFocusChangeListener(new EditTextFocusChanged());
+        this.view.getTotalRestEditText().setOnFocusChangeListener(new EditTextFocusChanged());
+        this.view.getTotalSetRestEditText().setOnFocusChangeListener(new EditTextFocusChanged());
+
         this.initialize();
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        if(timer != null){
+            timer.cancel();
+        }
+        lowBeep.release();
+        highBeep.release();
+        doubleBeep.release();
+        this.finish();
+    }
+
+    public void initialize() {};
+
+    public void startExercise(){
+        if(timer != null){
+            timer.cancel();
+        }
 
         timer = new Timer();
+        this.model.startNextSet();
+        Toast.makeText(this, "Starting in 5 seconds", Toast.LENGTH_LONG).show();
+
         timer.schedule(
                 new TimerTask() {
+                    int delay = 0;
+
                     @Override
                     public void run() {
+                        if(delay < 5){
+                            delay++;
+                            lowBeep.start();
+                            return;
+                        }
+
                         switch (model.getState()){
                             case EXERCISING: highBeep.start(); break;
                             case REP_RESTING: lowBeep.start(); break;
@@ -75,21 +148,59 @@ public abstract class RepeaterBase extends Activity {
                 0,
                 1000
         );
-
-
     }
 
-    @Override
-    public void onPause(){
-        super.onPause();
-        timer.cancel();
-        lowBeep.release();
-        highBeep.release();
-        doubleBeep.release();
-        this.finish();
+    public void resetExercise(){
+        if(timer != null){
+            timer.cancel();
+            timer = null;
+        }
+
+        this.model.setState(ExerciseState.PENDING);
+        this.model.setCompletedReps(0);
+        this.model.setCompletedHangTime(0);
+        this.model.setCompletedRestTime(0);
+        this.model.setCompletedPerSetRestTime(0);
+        this.model.setCompletedSets(0);
     }
 
-    public void initialize() {};
+    public void pauseExercise(){
+        if(timer != null){
+            timer.cancel();
+            timer = null;
+        }
 
-    public abstract RepsAndSetsBasedExercise createModel();
+        this.model.setState(ExerciseState.PENDING);
+    }
+
+    private class EditTextFocusChanged implements View.OnFocusChangeListener{
+
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+            if(hasFocus){
+                return;
+            }
+
+            Integer totalSets = safeParse(view.getTotalSetsEditText().getText());
+            Integer totalSetRest = safeParse(view.getTotalSetRestEditText().getText());
+            Integer totalReps = safeParse(view.getTotalRepsEditText().getText());
+            Integer totalRepsRest = safeParse(view.getTotalRestEditText().getText());
+            Integer hangTime = safeParse(view.getHangTimeEditText().getText());
+
+            model.setTotalSets(totalSets != null ? totalSets : model.getTotalSets());
+            model.setPerSetRestTime(totalSetRest != null ? totalSetRest : model.getPerSetRestTime());
+            model.setTotalReps(totalReps != null ? totalReps : model.getTotalReps());
+            model.setRestTime(totalRepsRest != null ? totalRepsRest : model.getRestTime());
+            model.setHangTime(hangTime != null ? hangTime : model.getHangTime());
+        }
+        
+        private Integer safeParse(Object s){
+            Integer result = null;
+            try{
+                result = Integer.parseInt(s.toString());
+            }catch (NumberFormatException nfe){ }
+            return result;
+        }
+
+    }
 }

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="TotalRest" type="id"/>
     <item name="CompletedRest" type="id"/>
@@ -9,4 +10,9 @@
     <item name="CompletedReps" type="id"/>
     <item name="HangTime" type="id"/>
     <item name="CompletedHangTime" type="id"/>
+    <item name="StartButton" type="id"/>
+    <item name="PauseButton" type="id"/>
+    <item name="ResetButton" type="id"/>
+    <item name="HangsOptionButton" type="id"/>
+    <item name="PyramidOptionButton" type="id"/>
 </resources>
