@@ -15,4 +15,8 @@
     <item name="ResetButton" type="id"/>
     <item name="HangsOptionButton" type="id"/>
     <item name="PyramidOptionButton" type="id"/>
+    <item name="OnMinuteOptionButton" type="id"/>
+    <item name="HangsRow" type="id"/>
+    <item name="RepsRestRow" type="id"/>
+    <item name="RepsRow" type="id"/>
 </resources>

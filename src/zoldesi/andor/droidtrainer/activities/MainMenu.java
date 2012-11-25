@@ -32,6 +32,13 @@ public class MainMenu extends Activity {
                 startActivity(StandardRepeater.class);
             }
         });
+
+        this.getButton(R.id.OnMinuteOptionButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(OnMinutePullUp.class);
+            }
+        });
     }
 
     private void startActivity(Class c){

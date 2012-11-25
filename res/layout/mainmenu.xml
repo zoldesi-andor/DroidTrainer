@@ -5,11 +5,12 @@
               android:layout_height="fill_parent"
               android:orientation="vertical">
     <Button android:id="@id/HangsOptionButton"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            style="@style/Button"
             android:text="Standard hangs" />
     <Button android:id="@id/PyramidOptionButton"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            style="@style/Button"
             android:text="Pyramid hangs" />
+    <Button android:id="@id/OnMinuteOptionButton"
+            style="@style/Button"
+            android:text="One minute pull ups" />
 </LinearLayout>
