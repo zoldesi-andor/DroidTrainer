@@ -25,6 +25,7 @@ public abstract class RepeaterBase extends Activity {
     MediaPlayer doubleBeep;
 
     private Timer timer;
+    private ExerciseState pausedState = null;
 
     SetsExerciseView view;
     RepsAndSetsBasedExercise model = new RepsAndSetsBasedExercise();
@@ -117,7 +118,12 @@ public abstract class RepeaterBase extends Activity {
         }
 
         timer = new Timer();
-        this.model.startNextSet();
+        if(this.pausedState != null){
+            this.model.setState(this.pausedState);
+            this.pausedState = null;
+        }else{
+            this.model.setState(ExerciseState.EXERCISING);
+        }
         Toast.makeText(this, "Starting in 5 seconds", Toast.LENGTH_LONG).show();
 
         timer.schedule(
@@ -170,6 +176,7 @@ public abstract class RepeaterBase extends Activity {
             timer = null;
         }
 
+        this.pausedState = this.model.getState();
         this.model.setState(ExerciseState.PENDING);
     }
 

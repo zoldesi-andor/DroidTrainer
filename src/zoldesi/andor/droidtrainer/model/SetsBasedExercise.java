@@ -34,7 +34,7 @@ public class SetsBasedExercise extends ObservableModel {
 
     public void setTotalSets(int totalSets) {
         this.totalSets = totalSets;
-        this.notifyObservers();
+        this.notifyObservers("TotalSets");
     }
 
     public int getCompletedSets() {
@@ -43,7 +43,7 @@ public class SetsBasedExercise extends ObservableModel {
 
     public void setCompletedSets(int completedSets) {
         this.completedSets = completedSets;
-        this.notifyObservers();
+        this.notifyObservers("CompletedSets");
     }
 
     public int getPerSetRestTime() {
@@ -52,7 +52,7 @@ public class SetsBasedExercise extends ObservableModel {
 
     public void setPerSetRestTime(int perSetRestTime) {
         this.perSetRestTime = perSetRestTime;
-        this.notifyObservers();
+        this.notifyObservers("PerSetRestTime");
     }
 
     public int getCompletedPerSetRestTime() {
@@ -61,7 +61,7 @@ public class SetsBasedExercise extends ObservableModel {
 
     public void setCompletedPerSetRestTime(int completedPerSetRestTime) {
         this.completedPerSetRestTime = completedPerSetRestTime;
-        this.notifyObservers();
+        this.notifyObservers("CompletedPerSetRestTime");
     }
 
     public int getRemainingSets(){
@@ -79,7 +79,7 @@ public class SetsBasedExercise extends ObservableModel {
     public void setState(ExerciseState state) {
         notifyStateChangeListeners(this.state, state);
         this.state = state;
-        this.notifyObservers();
+        this.notifyObservers("State");
     }
 
 //////////////////////////////////////////
@@ -93,17 +93,6 @@ public class SetsBasedExercise extends ObservableModel {
                 this.setState(completedSets >= totalSets ? ExerciseState.COMPLETED : ExerciseState.EXERCISING);
             }
         }
-    }
-
-    public void startNextSet(){
-        this.setCompletedPerSetRestTime(0);
-        this.setState(ExerciseState.EXERCISING);
-    }
-
-    public void startNextSetRest(){
-        this.setCompletedSets(completedSets + 1);
-        this.setCompletedPerSetRestTime(0);
-        this.setState(ExerciseState.SET_RESTING);
     }
 
     public void addStateChangeListener(ExerciseStateChangeListener listener){

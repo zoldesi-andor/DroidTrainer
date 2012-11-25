@@ -37,7 +37,7 @@ public class RepsAndSetsBasedExercise extends SetsBasedExercise {
 
     public void setTotalReps(int totalReps) {
         this.totalReps = totalReps;
-        this.notifyObservers();
+        this.notifyObservers("TotalReps");
     }
 
     public int getCompletedReps() {
@@ -46,7 +46,7 @@ public class RepsAndSetsBasedExercise extends SetsBasedExercise {
 
     public void setCompletedReps(int completedReps) {
         this.completedReps = completedReps;
-        this.notifyObservers();
+        this.notifyObservers("CompletedReps");
     }
 
     public int getHangTime() {
@@ -55,7 +55,7 @@ public class RepsAndSetsBasedExercise extends SetsBasedExercise {
 
     public void setHangTime(int hangTime) {
         this.hangTime = hangTime;
-        this.notifyObservers();
+        this.notifyObservers("HangTime");
     }
 
     public int getCompletedHangTime() {
@@ -64,7 +64,7 @@ public class RepsAndSetsBasedExercise extends SetsBasedExercise {
 
     public void setCompletedHangTime(int completedHangTime) {
         this.completedHangTime = completedHangTime;
-        this.notifyObservers();
+        this.notifyObservers("CompletedHangTime");
     }
 
     public int getRestTime() {
@@ -73,7 +73,7 @@ public class RepsAndSetsBasedExercise extends SetsBasedExercise {
 
     public void setRestTime(int restTime) {
         this.restTime = restTime;
-        this.notifyObservers();
+        this.notifyObservers("RestTime");
     }
 
     public int getCompletedRestTime() {
@@ -82,7 +82,7 @@ public class RepsAndSetsBasedExercise extends SetsBasedExercise {
 
     public void setCompletedRestTime(int completedRestTime) {
         this.completedRestTime = completedRestTime;
-        this.notifyObservers();
+        this.notifyObservers("CompletedRestTime");
     }
 
     public int getRemainingReps(){

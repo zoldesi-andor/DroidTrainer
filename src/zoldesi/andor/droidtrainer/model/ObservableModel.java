@@ -13,7 +13,7 @@ public class ObservableModel {
      * Interface to receive change notifications from the model
      */
     public interface ModelListener {
-        void modelChanged();
+        void modelChanged(String propertyName);
     }
 
     /**
@@ -35,9 +35,9 @@ public class ObservableModel {
     /**
      * Notifies all registered observers to refresh
      */
-    protected void notifyObservers(){
+    protected void notifyObservers(String propertyName){
         for(ModelListener listener : observers){
-            listener.modelChanged();
+            listener.modelChanged(propertyName);
         }
     }
 }

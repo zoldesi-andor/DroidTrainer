@@ -75,18 +75,29 @@ public class SetsExerciseView extends TableLayout implements ObservableModel.Mod
     }
 
     @Override
-    public void modelChanged() {
+    public void modelChanged(String propertyName) {
         if(model != null){
-            ((TextView)this.findViewById(R.id.CompletedReps)).setText(String.valueOf(model.getCompletedReps()));
-            ((TextView)this.findViewById(R.id.CompletedRest)).setText(String.valueOf(model.getCompletedRestTime()));
-            ((TextView)this.findViewById(R.id.CompletedSetRest)).setText(String.valueOf(model.getCompletedPerSetRestTime()));
-            ((TextView)this.findViewById(R.id.CompletedSets)).setText(String.valueOf(model.getCompletedSets()));
-            ((TextView)this.findViewById(R.id.CompletedHangTime)).setText(String.valueOf(model.getCompletedHangTime()));
-            ((EditText)this.findViewById(R.id.TotalReps)).setText(String.valueOf(model.getTotalReps()));
-            ((EditText)this.findViewById(R.id.TotalRest)).setText(String.valueOf(model.getRestTime()));
-            ((EditText)this.findViewById(R.id.TotalSetRest)).setText(String.valueOf(model.getPerSetRestTime()));
-            ((EditText)this.findViewById(R.id.TotalSets)).setText(String.valueOf(model.getTotalSets()));
-            ((EditText)this.findViewById(R.id.HangTime)).setText(String.valueOf(model.getHangTime()));
+            if("CompletedReps".equals(propertyName)){
+                ((TextView)this.findViewById(R.id.CompletedReps)).setText(String.valueOf(model.getCompletedReps()));
+            } else if("CompletedRestTime".equals(propertyName)){
+                ((TextView)this.findViewById(R.id.CompletedRest)).setText(String.valueOf(model.getCompletedRestTime()));
+            } else if("CompletedPerSetRestTime".equals(propertyName)){
+                ((TextView)this.findViewById(R.id.CompletedSetRest)).setText(String.valueOf(model.getCompletedPerSetRestTime()));
+            } else if("CompletedSets".equals(propertyName)){
+                ((TextView)this.findViewById(R.id.CompletedSets)).setText(String.valueOf(model.getCompletedSets()));
+            } else if("CompletedHangTime".equals(propertyName)){
+                ((TextView)this.findViewById(R.id.CompletedHangTime)).setText(String.valueOf(model.getCompletedHangTime()));
+            } else if("TotalReps".equals(propertyName)){
+                ((EditText)this.findViewById(R.id.TotalReps)).setText(String.valueOf(model.getTotalReps()));
+            } else if("RestTime".equals(propertyName)){
+                ((EditText)this.findViewById(R.id.TotalRest)).setText(String.valueOf(model.getRestTime()));
+            } else if("PerSetRestTime".equals(propertyName)){
+                ((EditText)this.findViewById(R.id.TotalSetRest)).setText(String.valueOf(model.getPerSetRestTime()));
+            } else if("TotalSets".equals(propertyName)){
+                ((EditText)this.findViewById(R.id.TotalSets)).setText(String.valueOf(model.getTotalSets()));
+            } else if("HangTime".equals(propertyName)){
+                ((EditText)this.findViewById(R.id.HangTime)).setText(String.valueOf(model.getHangTime()));
+            }
         }
     }
 }
