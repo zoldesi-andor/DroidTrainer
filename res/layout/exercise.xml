@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<zoldesi.andor.droidtrainer.views.SetsExerciseView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:stretchColumns="3">
+    <TableRow android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+        <TextView style="@style/Title"
+                  android:text="One Minute Pull Ups "
+                  android:layout_span="4"
+                  android:id="@id/ExerciseTitle"/>
+    </TableRow>
+    <TableRow android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+        <TextView style="@style/ExLabel"
+                  android:text="Sets: " />
+        <EditText style="@style/ExInput"
+                  android:id="@id/TotalSets"
+                  android:text="9"/>
+        <TextView style="@style/ExLabel"
+                  android:text=" / " />
+        <TextView style="@style/ExLabel"
+                  android:id="@id/CompletedSets"
+                  android:text="9" />
+    </TableRow>
+    <TableRow android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+        <TextView style="@style/ExLabel"
+                  android:text="Rest: " />
+        <EditText style="@style/ExInput"
+                  android:id="@id/TotalSetRest"
+                  android:text="9" />
+        <TextView style="@style/ExLabel"
+                  android:text=" / " />
+        <TextView style="@style/ExLabel"
+                  android:id="@id/CompletedSetRest"
+                  android:text="9" />
+    </TableRow>
+    <TableRow android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:id="@id/RepsRow">
+        <TextView style="@style/ExLabel"
+                  android:text="Reps: " />
+        <EditText style="@style/ExInput"
+                  android:id="@id/TotalReps"
+                  android:text="9" />
+        <TextView style="@style/ExLabel"
+                  android:text=" / " />
+        <TextView style="@style/ExLabel"
+                  android:id="@id/CompletedReps"
+                  android:text="9" />
+    </TableRow>
+    <TableRow android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:id="@id/RepsRestRow">
+        <TextView style="@style/ExLabel"
+                  android:text="Rest: " />
+        <EditText style="@style/ExInput"
+                  android:id="@id/TotalRest"
+                  android:text="9" />
+        <TextView style="@style/ExLabel"
+                  android:text=" / " />
+        <TextView style="@style/ExLabel"
+                  android:id="@id/CompletedRest"
+                  android:text="9" />
+    </TableRow>
+    <TableRow android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:id="@id/HangsRow">
+        <TextView style="@style/ExLabel"
+                  android:text="Hang: " />
+        <EditText style="@style/ExInput"
+                  android:id="@id/HangTime"
+                  android:text="9" />
+        <TextView style="@style/ExLabel"
+                  android:text=" / " />
+        <TextView style="@style/ExLabel"
+                  android:id="@id/CompletedHangTime"
+                  android:text="9" />
+    </TableRow>
+    <TableRow  android:layout_width="wrap_content"
+               android:layout_height="wrap_content">
+            <Button style="@style/Button"
+                    android:layout_span="4"
+                    android:text="Start"
+                    android:id="@id/StartButton"/>
+    </TableRow>
+    <TableRow  android:layout_width="wrap_content"
+               android:layout_height="wrap_content">
+            <Button style="@style/Button"
+                    android:layout_span="4"
+                    android:text="Pause"
+                    android:id="@id/PauseButton"
+                    android:visibility="invisible"/>
+    </TableRow>
+    <TableRow  android:layout_width="wrap_content"
+               android:layout_height="wrap_content">
+            <Button style="@style/Button"
+                    android:layout_span="4"
+                    android:text="Reset"
+                    android:id="@id/ResetButton"
+                    android:visibility="invisible"/>
+    </TableRow>
+</zoldesi.andor.droidtrainer.views.SetsExerciseView>

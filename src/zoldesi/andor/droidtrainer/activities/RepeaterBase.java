@@ -35,7 +35,7 @@ public abstract class RepeaterBase extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.view = (SetsExerciseView) LayoutInflater.from(this).inflate(R.layout.setsexercise, null, false);
+        this.view = (SetsExerciseView) LayoutInflater.from(this).inflate(R.layout.exercise, null, false);
         this.setContentView(view);
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 

@@ -19,4 +19,5 @@
     <item name="HangsRow" type="id"/>
     <item name="RepsRestRow" type="id"/>
     <item name="RepsRow" type="id"/>
+    <item name="ExerciseTitle" type="id"/>
 </resources>

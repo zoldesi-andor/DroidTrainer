@@ -11,7 +11,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activities.OnMinutePullUp"
+        <activity android:name=".activities.OneMinutePullUp"
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Black.NoTitleBar"/>
         <activity android:name=".activities.StandardRepeater"

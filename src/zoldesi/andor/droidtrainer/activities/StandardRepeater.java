@@ -15,6 +15,8 @@ public class StandardRepeater extends RepeaterBase {
 
     @Override
     public void initialize(){
+        this.view.setTitle("Repeaters");
+
         this.model.setHangTime(5);
         this.model.setRestTime(5);
         this.model.setTotalReps(10);

@@ -38,6 +38,10 @@ public class SetsExerciseView extends TableLayout implements ObservableModel.Mod
         this.model = model;
     }
 
+    public void setTitle(String title){
+        ((TextView)this.findViewById(R.id.ExerciseTitle)).setText(title);
+    }
+
     public Button getStartButton(){
         return ((Button)this.findViewById(R.id.StartButton));
     }

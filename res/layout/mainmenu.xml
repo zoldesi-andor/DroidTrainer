@@ -4,6 +4,8 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:orientation="vertical">
+    <TextView style="@style/Title"
+              android:text="Droid Trainer" />
     <Button android:id="@id/HangsOptionButton"
             style="@style/Button"
             android:text="Standard hangs" />

@@ -16,6 +16,8 @@ public class Pyramids extends RepeaterBase {
 
     @Override
     public void initialize(){
+        this.view.setTitle("Pyramid Hangs");
+
         this.model.setHangTime(4);
         this.model.setRestTime(5);
         this.model.setTotalReps(7);
