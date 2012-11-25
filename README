@@ -1,1 +1,5 @@
-This file was created by IntelliJ IDEA 11.1.4 for binding GitHub repository
+Simple android app for fingerboard training.
+Supported features:
+- repeaters
+- pyramids
+- one minute pull ups
