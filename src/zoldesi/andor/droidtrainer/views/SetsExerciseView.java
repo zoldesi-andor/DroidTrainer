@@ -78,26 +78,37 @@ public class SetsExerciseView extends TableLayout implements ObservableModel.Mod
     public void modelChanged(String propertyName) {
         if(model != null){
             if("CompletedReps".equals(propertyName)){
-                ((TextView)this.findViewById(R.id.CompletedReps)).setText(String.valueOf(model.getCompletedReps()));
+                setNewValue(R.id.CompletedReps,model.getCompletedReps());
             } else if("CompletedRestTime".equals(propertyName)){
-                ((TextView)this.findViewById(R.id.CompletedRest)).setText(String.valueOf(model.getCompletedRestTime()));
+                setNewValue(R.id.CompletedRest,model.getCompletedRestTime());
             } else if("CompletedPerSetRestTime".equals(propertyName)){
-                ((TextView)this.findViewById(R.id.CompletedSetRest)).setText(String.valueOf(model.getCompletedPerSetRestTime()));
+                setNewValue(R.id.CompletedSetRest,model.getCompletedPerSetRestTime());
             } else if("CompletedSets".equals(propertyName)){
-                ((TextView)this.findViewById(R.id.CompletedSets)).setText(String.valueOf(model.getCompletedSets()));
+                setNewValue(R.id.CompletedSets,model.getCompletedSets());
             } else if("CompletedHangTime".equals(propertyName)){
-                ((TextView)this.findViewById(R.id.CompletedHangTime)).setText(String.valueOf(model.getCompletedHangTime()));
+                setNewValue(R.id.CompletedHangTime,model.getCompletedHangTime());
             } else if("TotalReps".equals(propertyName)){
-                ((EditText)this.findViewById(R.id.TotalReps)).setText(String.valueOf(model.getTotalReps()));
+                setNewValue(R.id.TotalReps,model.getTotalReps());
             } else if("RestTime".equals(propertyName)){
-                ((EditText)this.findViewById(R.id.TotalRest)).setText(String.valueOf(model.getRestTime()));
+                setNewValue(R.id.TotalRest,model.getRestTime());
             } else if("PerSetRestTime".equals(propertyName)){
-                ((EditText)this.findViewById(R.id.TotalSetRest)).setText(String.valueOf(model.getPerSetRestTime()));
+                setNewValue(R.id.TotalSetRest,model.getPerSetRestTime());
             } else if("TotalSets".equals(propertyName)){
-                ((EditText)this.findViewById(R.id.TotalSets)).setText(String.valueOf(model.getTotalSets()));
+                setNewValue(R.id.TotalSets, model.getTotalSets());
             } else if("HangTime".equals(propertyName)){
-                ((EditText)this.findViewById(R.id.HangTime)).setText(String.valueOf(model.getHangTime()));
+                setNewValue(R.id.HangTime,model.getHangTime());
             }
+        }
+    }
+
+    private void setNewValue(int id,Integer value){
+        TextView view = (TextView)this.findViewById(id);
+        Integer oldValue = null;
+        try{
+            oldValue = Integer.valueOf(view.getText().toString());
+        } catch (NumberFormatException nfe){ }
+        if(oldValue != null && !oldValue.equals(value)){
+            view.setText(value.toString());
         }
     }
 }

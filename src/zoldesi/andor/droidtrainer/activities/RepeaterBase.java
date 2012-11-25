@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.Toast;
 import zoldesi.andor.droidtrainer.R;
 import zoldesi.andor.droidtrainer.model.ExerciseState;
@@ -89,11 +90,11 @@ public abstract class RepeaterBase extends Activity {
             }
         });
 
-        this.view.getTotalSetsEditText().setOnFocusChangeListener(new EditTextFocusChanged());
-        this.view.getHangTimeEditText().setOnFocusChangeListener(new EditTextFocusChanged());
-        this.view.getTotalRepsEditText().setOnFocusChangeListener(new EditTextFocusChanged());
-        this.view.getTotalRestEditText().setOnFocusChangeListener(new EditTextFocusChanged());
-        this.view.getTotalSetRestEditText().setOnFocusChangeListener(new EditTextFocusChanged());
+        this.view.getTotalSetsEditText().addTextChangedListener(new TotalSetsWatcher());
+        this.view.getHangTimeEditText().addTextChangedListener(new HangTimWatcher());
+        this.view.getTotalRepsEditText().addTextChangedListener(new TotalRepsWatcher());
+        this.view.getTotalRestEditText().addTextChangedListener(new RestTimeWatcher());
+        this.view.getTotalSetRestEditText().addTextChangedListener(new PerSetRestTimeWatcher());
 
         this.initialize();
     }
@@ -180,26 +181,7 @@ public abstract class RepeaterBase extends Activity {
         this.model.setState(ExerciseState.PENDING);
     }
 
-    private class EditTextFocusChanged implements View.OnFocusChangeListener{
-
-        @Override
-        public void onFocusChange(View v, boolean hasFocus) {
-            if(hasFocus){
-                return;
-            }
-
-            Integer totalSets = safeParse(view.getTotalSetsEditText().getText());
-            Integer totalSetRest = safeParse(view.getTotalSetRestEditText().getText());
-            Integer totalReps = safeParse(view.getTotalRepsEditText().getText());
-            Integer totalRepsRest = safeParse(view.getTotalRestEditText().getText());
-            Integer hangTime = safeParse(view.getHangTimeEditText().getText());
-
-            model.setTotalSets(totalSets != null ? totalSets : model.getTotalSets());
-            model.setPerSetRestTime(totalSetRest != null ? totalSetRest : model.getPerSetRestTime());
-            model.setTotalReps(totalReps != null ? totalReps : model.getTotalReps());
-            model.setRestTime(totalRepsRest != null ? totalRepsRest : model.getRestTime());
-            model.setHangTime(hangTime != null ? hangTime : model.getHangTime());
-        }
+    private abstract class EditTextWatcher implements TextWatcher{
         
         private Integer safeParse(Object s){
             Integer result = null;
@@ -209,5 +191,48 @@ public abstract class RepeaterBase extends Activity {
             return result;
         }
 
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            Integer value = safeParse(editable);
+            setValue(value);
+        }
+
+        abstract void setValue(Integer value);
+    }
+
+    private class TotalSetsWatcher extends EditTextWatcher{
+         void setValue(Integer value){
+             model.setTotalSets(value != null ? value : model.getTotalSets());
+         }
+    }
+
+    private class PerSetRestTimeWatcher extends EditTextWatcher{
+        void setValue(Integer value){
+            model.setPerSetRestTime(value != null ? value : model.getPerSetRestTime());
+        }
+    }
+
+    private class TotalRepsWatcher extends EditTextWatcher{
+        void setValue(Integer value){
+            model.setTotalReps(value != null ? value : model.getTotalReps());
+        }
+    }
+
+    private class RestTimeWatcher extends EditTextWatcher{
+        void setValue(Integer value){
+            model.setRestTime(value != null ? value : model.getRestTime());
+        }
+    }
+
+    private class HangTimWatcher extends EditTextWatcher{
+        void setValue(Integer value){
+            model.setHangTime(value != null ? value : model.getHangTime());
+        }
     }
 }
