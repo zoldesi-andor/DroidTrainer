@@ -163,6 +163,8 @@ public abstract class RepeaterBase extends Activity {
             timer = null;
         }
 
+        this.pausedState = null;
+
         this.model.setState(ExerciseState.PENDING);
         this.model.setCompletedReps(0);
         this.model.setCompletedHangTime(0);
